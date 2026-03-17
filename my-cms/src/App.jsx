@@ -6,6 +6,9 @@ import Product from './Pages/Product'
 import AddProduct from './Pages/AddProduct'
 
 import Sidebar from './Pages/Sidebar'
+import EditProduct from './Pages/EditProduct'
+import Dashboard from './Pages/Dashboard'
+import Order from './Pages/Order'
 
 
 function App() {
@@ -22,7 +25,11 @@ function App() {
      <Routes>
         {/* <Route path="/" element={<Homepage />} /> */}
         <Route path="/product" element={<Product />} />
+       <Route path='/dashboard' element={<Dashboard/>}/>
+       <Route path='/order' element={<Order/>}/>
+       
         <Route path="/addproduct" element={<AddProduct />} />
+        <Route path="/editproduct/:id" element={<EditProduct />} />
       </Routes>
       </div>
     </BrowserRouter>

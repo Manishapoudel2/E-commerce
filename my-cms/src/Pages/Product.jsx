@@ -19,6 +19,7 @@ const Product = () => {
         window.location.reload()
 
     }
+
     useEffect(()=>{
         fetchData()
     },[])
@@ -40,8 +41,8 @@ const Product = () => {
 </div>
         <table className='bg-white  shadow-xl rounded-2xl w-full    '>
     <thead>
-        <tr className="  font-normal bg-gray-50  className='p-2'   ">
-            <th className='p-2' >Product</th>
+        <tr>
+            <th >Product</th>
             {/* <th >Product Id</th> */}
             <th >Product Name</th>
             <th >Description</th>
@@ -54,8 +55,8 @@ const Product = () => {
     </thead>
     <tbody className='m-7'>
         {productdata.map((val,i)=>(
-            <tr key={i} className=''>
-               <td className='p-2'>
+            <tr key={i}>
+               <td className='px-2 py-2'>
   <img 
     src={val.imageurl} 
     alt={val.title} 
@@ -63,14 +64,19 @@ const Product = () => {
   />
 </td>
 {/* <td >{val.id}</td> */}
-<td className='font-bold p-2' >{val.title}</td>
-<td  className='p-2'>{val.description}</td>
-<td className='p-2' >{val.category}</td>
-<td className='p-2' >{val.price}</td>
-<td className='p-2' >{val.rating}</td>
-<td >
-<div className='flex text-xl gap-2 items-center justify-center p-2'>
-    <RiEdit2Line color='gray'  />
+<td className='font-bold px-2 py-2' >{val.title}</td>
+<td  className='px-2 py-2'>{val.description}</td>
+<td className='px-2 py-2' >{val.category}</td>
+<td >{val.price}</td>
+<td className='px-2 py-2' >{val.rating}</td>
+<td  className='px-2 py-2'>
+<div className='flex text-xl gap-2 items-center justify-center p-2 cursor-pointer'>
+   <RiEdit2Line
+  color="gray"
+  onClick={() =>
+    navigate(`/editproduct/${val.id}`)
+  }
+/>
     <MdOutlineDeleteOutline color='gray' onClick={()=>{
         handleDelete(val.id)
     }} />
