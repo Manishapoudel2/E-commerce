@@ -38,11 +38,10 @@ const Product = () => {
    + Add Product
   </button>
  
-</div>
-        <table className='bg-white  shadow-xl rounded-2xl w-full    '>
+</div><table className="bg-white shadow-xl rounded-2xl w-full text-center">
     <thead>
         <tr>
-            <th >Product</th>
+            <th  >Product</th>
             {/* <th >Product Id</th> */}
             <th >Product Name</th>
             <th >Description</th>
@@ -56,7 +55,7 @@ const Product = () => {
     <tbody className='m-7'>
         {productdata.map((val,i)=>(
             <tr key={i}>
-               <td className='px-2 py-2'>
+             <td className="px-2 py-2 flex justify-center ">
   <img 
     src={val.imageurl} 
     alt={val.title} 
@@ -65,7 +64,7 @@ const Product = () => {
 </td>
 {/* <td >{val.id}</td> */}
 <td className='font-bold px-2 py-2' >{val.title}</td>
-<td  className='px-2 py-2'>{val.description}</td>
+<td  className='px-2 py-2 wrap-break-words max-w-xs'>{val.description}</td>
 <td className='px-2 py-2' >{val.category}</td>
 <td >{val.price}</td>
 <td className='px-2 py-2' >{val.rating}</td>

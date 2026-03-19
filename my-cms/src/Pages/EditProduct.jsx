@@ -6,7 +6,7 @@ const EditProduct = () => {
   const [product , setProduct]=useState([])
   const {id} = useParams()
   const API = import.meta.env.VITE_API_URL;
-const [edit , setEdit] = useState([{
+const [edit , setEdit] = useState({
  id:"",
   title:"",
   description:"",
@@ -14,10 +14,10 @@ const [edit , setEdit] = useState([{
   price:"",
   rating:"",
   imageurl:""
-}]);
+});
   const fetchData=async()=>{
    const res= await axios.get(`${API}/product/${id}`)
-   setEdit(res.data)
+   setEdit(res.data[0])
   }
 
   useEffect(()=>{
@@ -45,7 +45,7 @@ return (
         <form >
             <div className='flex flex-col gap-2 mt-5'>
                 <label htmlFor="title" className='text-gray-500 text-xs font-semibold'>PRODUCT NAME</label>
-                <input type="text"  value={edit[0].title}  onChange={(e) =>
+                <input type="text"  value={edit.title}  onChange={(e) =>
                     setEdit({ ...edit, title:e.target.value })
                   } className=' h-8 border border-gray-300  rounded-sm' />
             </div>
@@ -54,29 +54,29 @@ return (
 
            <textarea  onChange={(e) =>
                     setEdit({ ...edit, description:e.target.value })
-                  } value={edit[0].description} className='w-full h-8 border border-gray-300  rounded-sm'  ></textarea>
+                  } value={edit.description} className='w-full h-8 border border-gray-300  rounded-sm'  ></textarea>
             </div>
              <div className='flex flex-col gap-2 mt-5'>
                 <label htmlFor="category" className='text-gray-500 text-xs font-semibold'>CATEGORY</label>
                 <input type="text"  onChange={(e) =>
                     setEdit({ ...edit, category:e.target.value })
-                  } value={edit[0].category}  className='w-full h-8 border border-gray-300  rounded-sm'  />
+                  } value={edit.category}  className='w-full h-8 border border-gray-300  rounded-sm'  />
             </div>
             <div className='flex flex-col gap-2 mt-5'>
                 <label htmlFor="price" className='text-gray-500 text-xs font-semibold'>PRICE</label>
                 <input type="text" onChange={(e) =>
                     setEdit({ ...edit, price:e.target.value })
-                  } value={edit[0].price}  className='w-full h-8 border border-gray-300  rounded-sm' />
+                  } value={edit.price}  className='w-full h-8 border border-gray-300  rounded-sm' />
             </div>
            <div className='flex flex-col gap-2 mt-5'>
                 <label htmlFor="rating" className='text-gray-500 text-xs font-semibold'>RATING</label>
-                <input type="text"  value={edit[0].rating}  onChange={(e) =>
+                <input type="text"  value={edit.rating}  onChange={(e) =>
                     setEdit({ ...edit, rating:e.target.value })
                   } className='w-full h-8 border border-gray-300  rounded-sm'  />
             </div>
              <div className='flex flex-col gap-2 mt-5'>
                 <label htmlFor="imageurl" className='text-gray-500 text-xs font-semibold'>IMAGE URL</label>
-                <input type="url" value={edit[0].imageurl}  onChange={(e) =>
+                <input type="url" value={edit.imageurl}  onChange={(e) =>
                     setEdit({ ...edit, imageurl:e.target.value })
                   } className='w-full h-8 border border-gray-300  rounded-sm' />
             </div>

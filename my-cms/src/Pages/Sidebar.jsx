@@ -13,7 +13,7 @@ const Sidebar = () => {
 <div className='flex flex-col h-screen gap-3 w-fit mt-5 shadow-xl p-6 font-semibold '>
   
   <div onClick={()=>{
-    setActive('Dashboard');navigate('/dashboard')
+    setActive('Dashboard');navigate('/')
   }} className={`cursor-pointer flex items-center gap-2  rounded-md p-3 transition-all duration-200 ease-in ${active==='Dashboard'? 'bg-black text-white':'text-gray-500 bg-white'}`}>
     <MdOutlineDashboardCustomize />
     <h1>Dashboard</h1>
