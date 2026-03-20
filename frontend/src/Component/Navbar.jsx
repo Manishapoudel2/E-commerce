@@ -3,7 +3,7 @@ import { IoIosSearch } from "react-icons/io";
 import { CiShoppingCart } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({search , setSearch}) => {
   const navigate= useNavigate()
   const links = ["BECOME A SELLER", "HELP & SUPPORT", "LOGIN", "SIGNUP"];
 
@@ -17,7 +17,9 @@ const Navbar = () => {
         <div className="flex items-center w-full md:w-auto">
           <input
             className="w-full md:w-80 p-2 h-10 rounded-l-sm bg-white text-gray-500 text-sm focus:outline-none"
-            type="text"
+            type="text" value={search} onChange={(e)=>
+setSearch(e.target.value)
+            }
             placeholder="Search in QuickCart"
           />
 
