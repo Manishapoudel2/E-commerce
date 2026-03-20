@@ -13,19 +13,19 @@ const Flashsale = () => {
     fetchData();
   }, []);
   return (
-    <div className="text-black  sm:p-4 ">
-      <h1 className="font-sans text-xl">Flash Sale</h1>
+    <div className="text-black  sm:p-4  mt-5  ">
+      <h1 className='font-sans text-2xl text-black mb-5 px-2'>Flash Sale</h1>
 
-      <div className="text-black  bg-white shadow-2xlflex  flex-col justify-center">
+      <div className="text-black  bg-white shadow-md p-2 flex  flex-col justify-center sm:p-4">
         <div >
           <div className="flex justify-between mb-2  text-teal-500">
-            <h1>On Sale Now</h1>
-            <button className="w-fit p-1 text-[10px] sm:text-xs border border-teal-500 cursor-pointer">
+            <h1 className=" font-sans sm:text-xs lg:text-xl md:text-sm">On Sale Now</h1>
+            <button className="w-fit p-1 lg:text-[16px] sm:text-xs border border-teal-500 cursor-pointer">
               SHOP ALL PRODUCTS
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 ">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 ">
           {product.map((val, i) => {
             return (
               <div
@@ -36,7 +36,7 @@ const Flashsale = () => {
                   <img
                     src={val.imageurl}
                     alt={val.title}
-                    className="object-cover w-full h-40"
+                    className="object-cover w-full h-35"
                   />
                 </div>
                 <div className="p-2 flex flex-col gap-1 grow">

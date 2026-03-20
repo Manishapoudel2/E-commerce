@@ -1,14 +1,18 @@
 import React from "react";
 import { IoIosSearch } from "react-icons/io";
 import { CiShoppingCart } from "react-icons/ci";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate= useNavigate()
   const links = ["BECOME A SELLER", "HELP & SUPPORT", "LOGIN", "SIGNUP"];
 
   return (
     <nav className="bg-teal-500 p-4 flex flex-col gap-3">
       <div className="flex flex-col md:flex-row items-center justify-evenly gap-3">
-        <h1 className="font-bold text-xl text-white">QuickCart</h1>
+        <h1 className="font-bold text-xl text-white cursor-pointer"  onClick={()=>{
+          navigate('/')
+        }}>QuickCart</h1>
 
         <div className="flex items-center w-full md:w-auto">
           <input
@@ -27,7 +31,10 @@ const Navbar = () => {
         </div>
         <div className="flex justify-center text-xs sm:text-sm gap-4">
           {links.map((link, i) => (
-            <span key={i} className="hover:text-gray-100 cursor-pointer">
+            <span key={i} className="hover:text-gray-100 cursor-pointer" onClick={()=>{
+              if(link==="LOGIN") navigate('/login');
+              if(link==="SIGNUP" ) navigate('/signup')
+            }}>
               {link}
             </span>
           ))}

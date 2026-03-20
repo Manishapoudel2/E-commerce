@@ -5,7 +5,7 @@ import { RiTwitterXFill, RiYoutubeLine } from "react-icons/ri";
 
 const Footer = () => {
   return (
-    <footer className='bg-gray-50 text-gray-500 py-10 text-xs '>
+    <footer className='bg-gray-50 text-gray-600 py-20 min-h-80 text-xs '>
       <div className='container mx-auto flex flex-col md:flex-row justify-between items-start gap-8'>
         
        

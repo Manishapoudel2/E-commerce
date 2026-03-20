@@ -1,31 +1,73 @@
 import React from 'react'
+import { FcGoogle } from "react-icons/fc";
+import { BiLogoFacebookCircle } from "react-icons/bi";
+import { useNavigate } from 'react-router-dom';
+import { RxCross1 } from 'react-icons/rx';
 
 const Login = () => {
+  const navigate = useNavigate()
   return (
-    <div className='flex     gap-7 h-screen text-gray-500 justify-center items-center '>
-        <div className='bg-white shadow-xl  flex flex-col gap-6 rounded-md  justify-center items-center p-10'>
-        <div>
-            <input className='w-72 h-10 px-2 py-2 border-gray-400 border rounded-sm  text-sm  focus:outline-none  focus:ring-1 focus:ring-blue-400' type="text" name="email" placeholder='Please enter your Phone or Email' />
-        </div>
-        <div>
-  <input className='w-72 h-10 px-2 py-2 border-gray-400 rounded-sm border  text-sm   focus:outline-none  focus:ring-1 focus:ring-blue-400'type="text" name="password" placeholder='Please enter your Password' />
-        </div>
-         <div className="relative w-full ">
-          <span className="text-sm  absolute right-0 bottom-0 cursor-pointer hover:underline">
-            Forget Password
-          </span>
-          </div>
-     
-          <button type='submit' className='w-72 h-8 
-         bg-teal-500  text-white  rounded-sm  hover:bg-teal-600 cursor-pointer   '>Login</button>
-     
-        <div>
-        <p className='text-sm '>Don't have an account? <span className='hover:underline text-blue-500'>Sign up</span> 
-        </p>
-        </div>
+    <div className='flex min-h-screen justify-center items-center px-4  text-gray-500'>
       
+      <div className='bg-white shadow-md flex flex-col gap-5 rounded-md justify-center items-center p-6 sm:p-10 w-full max-w-sm'>
+        <div className='flex justify-between items-center w-full'>
+           
+            <h1 className="text-teal-500 font-sans text-2xl font-semibold">Login to Quickcart</h1>
+            <RxCross1 size={24} className="cursor-pointer hover:text-gray-500" onClick={()=>{
+              navigate('/')
+            }} />
+        </div>
+        <div className='w-full'>
+          <input
+            className='w-full h-10 px-3 border border-gray-400 rounded-sm text-sm focus:outline-none focus:ring-1 focus:ring-blue-400'
+            type="text"
+            name="email"
+            placeholder='Please enter your Phone or Email'
+          />
+        </div>
 
-    </div>
+        <div className='w-full'>
+          <input
+            className='w-full h-10 px-3 border border-gray-400 rounded-sm text-sm focus:outline-none focus:ring-1 focus:ring-blue-400'
+            type="password"
+            name="password"
+            placeholder='Please enter your Password'
+          />
+        </div>
+
+       <div className="w-full text-right">
+  <span className="text-sm cursor-pointer hover:underline">
+    Forget Password
+  </span>
+</div>
+
+        <button
+          type='submit'
+          className='w-full h-11 sm:h-10 bg-teal-500 text-white rounded-sm hover:bg-teal-600 cursor-pointer'
+        >
+          Login
+        </button>
+
+        <div className='text-center'>
+          <p className='text-sm'>
+            Don't have an account?
+            <span className='hover:underline text-blue-500 cursor-pointer' onClick={()=>{
+              navigate('/signup')
+            }}>
+           {""}   Sign up
+            </span>
+          </p>
+        </div>
+        <div className='flex flex-col gap-3 items-center justify-center'>
+          <p className='text-sm'>Or , login with</p>
+<div className='flex flex-col  sm:flex-row gap-3 sm:gap-4 items-center'>
+<p className='flex text-sm  justify-center items-center gap-2'>  <FcGoogle size={20} /> Google</p>
+<p className='flex justify-center items-center text-sm gap-2'>  <BiLogoFacebookCircle size={20} color='blue' /> Facebook</p>
+</div>
+        </div>
+
+      </div>
+
     </div>
   )
 }
