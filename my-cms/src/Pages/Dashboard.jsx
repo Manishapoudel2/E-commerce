@@ -3,6 +3,7 @@ import { IoCart } from "react-icons/io5";
   import { GiIceCube } from "react-icons/gi";
       import { FaChartLine } from "react-icons/fa";
 const Dashboard = () => {
+  
   return (
     <div className="bg-gray-50 w-full p-4">
     
@@ -12,7 +13,7 @@ const Dashboard = () => {
           <p>Manage your store's dashboard and data.</p>
         </div>
 
-        <div className="flex  flex-row flex-wrap items-stretch mt-5 gap-5 font-semibold">
+        <div className="flex    mt-5 gap-5 font-semibold">
           <div className="flex flex-col p-5 w-full sm:w-1/3 gap-2 bg-white h-48 border border-gray-200 rounded-md">
             <div className="flex justify-between items-center">
               <RiMoneyDollarBoxFill size={35} color="green" />
@@ -41,6 +42,7 @@ const Dashboard = () => {
 
     
       <div className="overflow-x-auto mt-5">
+        <h1 className="font-bold">RECENT ORDERS</h1>
         <table className="sm:w-fit lg:w-6xl text-sm text-left text-gray-600 bg-white">
           <thead className="text-gray-700 uppercase text-xs">
             <tr>
