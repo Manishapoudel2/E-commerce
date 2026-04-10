@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { IoStar } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 const Flashsale = () => {
+  const navigate = useNavigate();
   const API = import.meta.env.VITE_API_URL;
   const [product, setProduct] = useState([]);
   const fetchData = async () => {
@@ -14,25 +16,34 @@ const Flashsale = () => {
   }, []);
   return (
     <div className="text-black  sm:p-4  mt-5  ">
-      <h1 className='font-sans text-2xl text-black mb-5 px-2'>Flash Sale</h1>
+      <h1 className="font-sans text-2xl text-black mb-5 px-2">Flash Sale</h1>
 
       <div className="text-black  bg-gray-50 shadow-md p-2 flex  flex-col justify-center sm:p-4">
-        <div >
+        <div>
           <div className="flex justify-between mb-2  text-teal-500">
-            <h1 className=" font-sans sm:text-xs lg:text-xl md:text-sm">On Sale Now</h1>
-            <button className="w-fit p-1 lg:text-[16px] sm:text-xs border border-teal-500 cursor-pointer">
+            <h1 className=" font-sans sm:text-xs lg:text-xl md:text-sm">
+              On Sale Now
+            </h1>
+            <button
+              className="w-fit p-1 lg:text-[16px] sm:text-xs border border-teal-500 cursor-pointer"
+              onClick={() => {
+                navigate("/allproducts");
+              }}
+            >
               SHOP ALL PRODUCTS
             </button>
-           
           </div>
-           <hr className=" border-0.5 border-gray-400 py-2"/>
+          <hr className=" border-0.5 border-gray-400 py-2" />
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 ">
           {product.map((val, i) => {
             return (
               <div
                 key={i}
-                className="text-black w-full bg-white shadow-xs flex flex-col h-full"
+                className="text-black w-full bg-white shadow-xs flex flex-col h-full hover:bg-white hover:shadow-md cursor-pointer"
+                onClick={() => {
+                  navigate(`/product/${val.id}`);
+                }}
               >
                 <div>
                   <img

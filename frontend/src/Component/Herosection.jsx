@@ -1,24 +1,61 @@
-import React from 'react'
+import { useState, useEffect } from "react";
 
-const Herosection = () => {
+function HeroSection() {
+  const images = [
+    "https://images.pexels.com/photos/6214384/pexels-photo-6214384.jpeg",
+    "https://images.pexels.com/photos/5650027/pexels-photo-5650027.jpeg",
+    "https://images.pexels.com/photos/5872189/pexels-photo-5872189.jpeg"
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((currentIndex + 1) % images.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [currentIndex, images.length]);
+
+  // Show previous image
+  const prevSlide = () => {
+    if (currentIndex === 0) {
+      setCurrentIndex(images.length - 1);
+    } else {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
+
+
+  const nextSlide = () => {
+    setCurrentIndex((currentIndex + 1) % images.length);
+  };
+
   return (
-    <section className="bg-gray-100 py-20 min-h-screen flex items-center  ">
-      <div className="container mx-auto text-center px-4">
-       
-        <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-black">
-          Welcome to Quickcart!
-        </h1>
-      
-        <p className="text-gray-700 text-lg sm:text-xl mb-6">
-          Shop the best products at amazing prices
-        </p>
-       
-        <button className="px-6 py-3 bg-teal-500 text-white rounded hover:bg-teal-600 transition">
-          Shop Now
-        </button>
-      </div>
-    </section>
-  )
+   <div className="relative w-full h-96   sm:h-100 md:h-125 overflow-hidden ">
+  <img
+    src={images[currentIndex]}
+    alt={`Slide ${currentIndex + 1}`}
+    className="w-full h-full object-cover rounded-3xl  p-4 transition-opacity duration-1000 ease-in-out"
+  />
+
+  <button
+    onClick={prevSlide}
+    className="absolute top-1/2 left-5 -translate-y-1/2 bg-gray bg-opacity-50 text-white rounded-full p-3 text-2xl hover:bg-opacity-70"
+  >
+    &#10094;
+  </button>
+
+  <button
+    onClick={nextSlide}
+    className="absolute top-1/2 right-5 -translate-y-1/2 bg-gray bg-opacity-50 text-white rounded-full p-3 text-2xl hover:bg-opacity-70"
+  >
+    &#10095;
+  </button>
+  
+</div>
+  );
 }
 
-export default Herosection
+export default HeroSection;

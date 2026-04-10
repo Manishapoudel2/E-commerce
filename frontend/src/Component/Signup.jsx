@@ -1,65 +1,134 @@
-import React, { useState } from 'react'
-import { BiLogoFacebookCircle } from 'react-icons/bi'
-import { FcGoogle } from 'react-icons/fc'
+import { useNavigate } from "react-router-dom";
 import { RxCross1 } from "react-icons/rx";
-import { useNavigate } from 'react-router-dom'
+import { email, z } from "zod";
+import { useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Signup = () => {
-    const navigate = useNavigate()
-  
-    
+  const API = import.meta.env.VITE_API_URL;
+  const [error, setError] = useState({});
+  const [signup, setSignup] = useState({
+    fullname: "",
+    email: "",
+    password: "",
+  });
+  const schema = z.object({
+    fullname: z.string().min(3, "Username required"),
+    email: z
+      .string()
+      .email("email should be in email format")
+      .min(1, "email must required "),
+    // password: z
+    //   .string()
+    //   .regex(
+    //     /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8}$/,
+    //     "Password must be at least 8 characters long and include uppercase, lowercase, and a number",
+    //   ),
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const result = schema.safeParse(signup);
+    if (!result.success) {
+      const fieldError = {};
+      result.error.issues.forEach((issue) => {
+        fieldError[issue.path[0]] = issue.message;
+      });
+
+      setError(fieldError);
+      return;
+    }
+
+    await axios.post(`${API}/user/signup`, signup);
+    toast.success("Data added successfully");
+    // alert("Login successfully")
+    setSignup({
+      fullname: "",
+      email: "",
+      password: "",
+    });
+  };
+  const handelChange = async (e) => {
+    const { name, value } = e.target;
+    setSignup({ ...signup, [name]: value });
+    setError({ ...error, [name]: "" });
+  };
+  const navigate = useNavigate();
   return (
-   <div className="flex flex-col min-h-screen justify-center items-center p-5 text-gray-500">
-  <div className="bg-white shadow-md flex flex-col gap-6 p-6 rounded-md justify-center items-center w-full max-w-sm">
-      <div className="flex items-center justify-between w-full">
-  <h1 className="text-teal-500 font-sans text-2xl font-semibold">Sign up</h1>
-  <RxCross1 size={24} className="cursor-pointer hover:text-gray-500" onClick={()=>{
-    navigate('/')
-  }} />
-</div>
-       <div className="flex w-full gap-2">
-  <input
-    type="text"
-    value="+977"
-    
-    className="w-20 border border-gray-400 rounded-md py-2 px-2 bg-gray-100 text-sm"
-  />
-  <input
-    type="text"
-    name="number"
-    placeholder="Please enter your number"
-    className="flex-1 border border-gray-400 rounded-md py-2 px-2 text-sm focus:outline-none focus:ring-1 focus:ring-teal-500"
-  />
-</div>
-       <div className='flex gap-2 '>
-        <input type="checkbox" name="check" />
-        <p className='text-xs wrap-break-word  '>By creating and/or using your account, you agree to our <span  className='text-blue-600 '>Terms of Use</span>  and <span className='text-blue-600 '>Privacy Policy</span>.</p>
-       </div>
-     <button className="w-full  text-teal-500 border-teal-500 border py-2 rounded-md hover:bg-teal-100 cursor-pointer">
-  Send code via SMS
-</button>
-      
-      <div>
-       <p className='text-sm'>
+    <div className="flex min-h-screen justify-center items-center px-4  text-gray-500 bg-teal-50">
+      <div className="bg-white shadow-md flex flex-col gap-5 rounded-md justify-center items-center p-6 sm:p-10 w-full max-w-sm">
+        <div className="flex justify-between items-center w-full">
+          <h1 className="text-teal-500 font-sans text-xs lg:text-2xl  font-semibold ">
+            Signup
+          </h1>
+          <RxCross1
+            size={24}
+            className="cursor-pointer hover:text-gray-500"
+            onClick={() => {
+              navigate("/");
+            }}
+          />
+        </div>
+        <form onSubmit={handleSubmit}>
+          <input
+            className="w-full mb-3 h-10 px-3 border border-gray-400 rounded-sm md:text-sm lg:text-sm text-[10px] focus:outline-none focus:ring-1 focus:ring-blue-400"
+            type="text"
+            name="fullname"
+            value={signup.fullname}
+            onChange={handelChange}
+            placeholder="Please enter your fullname"
+          />
+          {error.fullname && (
+            <p className="text-red-500 text-[10px] py-2">{error.fullname}</p>
+          )}
+          <input
+            className="w-full mb-3 h-10 px-3 border border-gray-400 rounded-sm md:text-sm lg:text-sm text-[10px] focus:outline-none focus:ring-1 focus:ring-blue-400"
+            type="email"
+            name="email"
+            value={signup.email}
+            onChange={handelChange}
+            placeholder="Please enter your e-mail"
+          />
+          {error.email && (
+            <p className="text-red-500 text-[10px] py-2">{error.email}</p>
+          )}
+          <input
+            className="w-full mb-3 h-10 px-3 border border-gray-400 rounded-sm md:text-sm lg:text-sm text-[10px] focus:outline-none focus:ring-1 focus:ring-blue-400"
+            type="password"
+            name="password"
+            value={signup.password}
+            onChange={handelChange}
+            placeholder="Please enter your Password"
+          />
+          {error.password && (
+            <p className="text-red-500 text-[10px] py-2">{error.password}</p>
+          )}
+
+          <button
+            type="submit"
+            className="w-full lg:h-10 md:h-10 h-6  bg-teal-500 text-white rounded-sm hover:bg-teal-600 cursor-pointer md:text-sm lg:text-sm text-[10px]"
+          >
+            Signup
+          </button>
+        </form>
+
+        <div className="text-center">
+          <p className="md:text-sm lg:text-sm text-[10px]">
             Already have an account?
-            <span className='hover:underline text-blue-500 cursor-pointer ' onClick={()=>{
-                navigate('/login')
-            }}>
-            {" "} Log in Now
+            <span
+              className="hover:underline text-blue-500 cursor-pointer"
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              {""} Login
             </span>
           </p>
+        </div>
       </div>
-        <div className='flex flex-col gap-3 items-center justify-center'>
-                <p className='text-sm'>Or , Sign up with</p>
-      <div className='flex flex-col  sm:flex-row gap-3 sm:gap-4 items-center'>
-      <p className='flex text-sm  justify-center items-center gap-2'>  <FcGoogle size={20} /> Google</p>
-      <p className='flex justify-center items-center text-sm gap-2'>  <BiLogoFacebookCircle size={20} color='blue' /> Facebook</p>
-      </div>
-              </div>
-      </div>
-      
     </div>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;
