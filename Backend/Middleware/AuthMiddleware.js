@@ -16,4 +16,4 @@ try{
       return res.status(401).json({message:"Token required"})
 }
 };
-module.exports=verifyToken
+module.exports=verifyToken;
