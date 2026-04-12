@@ -5,7 +5,7 @@ class OrderModel{
         const [orders] = await DB.query(`
             SELECT * FROM orders 
             JOIN user ON orders.user_id = user.id 
-            LEFT JOIN productdetail p ON orders.product_id = p.id
+        JOIN productdetail p ON orders.product_id = p.id
         `);
         return orders;
     }
@@ -14,7 +14,7 @@ class OrderModel{
         const [orders] = await DB.query(`
             SELECT * FROM orders 
             JOIN user ON orders.user_id = user.id 
-            LEFT JOIN productdetail p ON orders.product_id = p.id
+         JOIN productdetail p ON orders.product_id = p.id
             WHERE orders.user_id = ?
         `, [user_id]);
         return orders;
