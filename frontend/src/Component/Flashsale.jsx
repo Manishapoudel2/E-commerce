@@ -9,7 +9,7 @@ const Flashsale = () => {
   const [product, setProduct] = useState([]);
   const fetchData = async () => {
     const res = await axios.get(`${API}/product`);
-    setProduct(res.data.slice(5, 11));
+    setProduct(res.data.slice(3, 9));
   };
   useEffect(() => {
     fetchData();

@@ -10,7 +10,7 @@ const Products = ({ search }) => {
   const navigate = useNavigate();
   const API = import.meta.env.VITE_API_URL;
   const [product, setProduct] = useState([]);
-  const [visibleItem , setVisibleItems]=useState(2)
+  const [visibleItem , setVisibleItems]=useState(6)
 
 
   const fetchData = async () => {
@@ -43,7 +43,7 @@ const handleAddToCart = (e) => {
 
 // load more
  const loadProducts=()=>{
-  setVisibleItems(prev=>prev+2)
+  setVisibleItems(prev=>prev+6)
  }
 
 
@@ -101,12 +101,14 @@ const handleAddToCart = (e) => {
           );
         })}
       </div>
+        {visibleItem < filterProducts.length && (
       <div className="flex justify-center mt-4 text-teal-500 p-4 ">
         <button className="w-96 sm:w-1/4 md:w-96 lg:w-96 border border-teal-500 py-2 cursor-pointer"
         onClick={loadProducts}>
           LOAD MORE
         </button>
       </div>
+       )}
     </div>
   );
 };

@@ -5,6 +5,6 @@ router.get('/',OrderController.getOrder);
 router.get('/user/:id',OrderController.getByUser);
 router.post('/',OrderController.postOrder);
 router.delete('/:id',OrderController.deleteOrder);
-router.put('/status/:id', OrderController.updateOrderStatus);
+router.put('/:id', OrderController.updateOrderStatus);
 
 module.exports = router;
