@@ -42,7 +42,6 @@ const Product = () => {
     <thead>
         <tr>
             <th  >Product</th>
-            {/* <th >Product Id</th> */}
             <th >Product Name</th>
             <th >Description</th>
             <th  >Category</th>
@@ -62,7 +61,6 @@ const Product = () => {
     className="w-14 h-14 object-cover rounded-md  " 
   />
 </td>
-{/* <td >{val.id}</td> */}
 <td className='font-bold px-2 py-2' >{val.title}</td>
 <td  className='px-2 py-2 wrap-break-words max-w-xs'>{val.description}</td>
 <td className='px-2 py-2' >{val.category}</td>
